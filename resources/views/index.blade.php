@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-
+    @include('scripts.script')
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         var map = L.map('map').setView([15.4806, 120.7683], 15);

@@ -11,7 +11,7 @@
         </div>
     </div>
 </body>
-
+@include('scripts.script')
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const ctx = document.getElementById('myChart').getContext('2d');
@@ -22,7 +22,7 @@
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // X-axis labels
                 datasets: [{
                     label: 'Precipitation Data',
-                    data: [10, 20, 15, 30, 25, 35, 28, 44, 14, 81, 56, 30], // Data points
+                    data: dataLastYear,
                     borderColor: 'blue',
                     backgroundColor: 'rgba(0, 0, 255, 0.2)',
                     borderWidth: 2,
