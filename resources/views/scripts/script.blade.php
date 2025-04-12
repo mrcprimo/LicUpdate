@@ -22,45 +22,45 @@
     //fetch data
 
     // Delay helper function (returns a Promise that resolves after a delay)
-    function delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
+    // function delay(ms) {
+    //     return new Promise(resolve => setTimeout(resolve, ms));
+    // }
 
-    async function fetchMonthlyPrecipitation(month) {
-        const start = `${year}-${String(month).padStart(2, '0')}-01`;
-        const end = new Date(year, month, 0); // Get last day of the month
-        const endDate = `${year}-${String(month).padStart(2, '0')}-${String(end.getDate()).padStart(2, '0')}`;
-        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(city)}/${start}/${endDate}?unitGroup=metric&key=${apiKey}&include=days`;
-        try {
-            const res = await fetch(url);
-            const data = await res.json();
+    // async function fetchMonthlyPrecipitation(month) {
+    //     const start = `${year}-${String(month).padStart(2, '0')}-01`;
+    //     const end = new Date(year, month, 0); // Get last day of the month
+    //     const endDate = `${year}-${String(month).padStart(2, '0')}-${String(end.getDate()).padStart(2, '0')}`;
+    //     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(city)}/${start}/${endDate}?unitGroup=metric&key=${apiKey}&include=days`;
+    //     try {
+    //         const res = await fetch(url);
+    //         const data = await res.json();
 
-            let count = 0;
-            let sum = 0;
+    //         let count = 0;
+    //         let sum = 0;
 
-            data.days.forEach(day => {
-                console.log(`Date: ${day.datetime}, Precipitation: ${day.precip} mm`);
-                sum += day.precip || 0;
-                count++;
-            });
+    //         data.days.forEach(day => {
+    //             console.log(`Date: ${day.datetime}, Precipitation: ${day.precip} mm`);
+    //             sum += day.precip || 0;
+    //             count++;
+    //         });
 
-            // const average = count > 0 ? sum / count : 0;
-            averagePrecipitationData.push(sum);
-            // console.log(`Average for ${start} to ${endDate}: ${average.toFixed(2)} mm`);
-        } catch (err) {
-            console.error(`Error fetching data for ${start}:`, err);
-        }
-    }
+    //         // const average = count > 0 ? sum / count : 0;
+    //         averagePrecipitationData.push(sum);
+    //         // console.log(`Average for ${start} to ${endDate}: ${average.toFixed(2)} mm`);
+    //     } catch (err) {
+    //         console.error(`Error fetching data for ${start}:`, err);
+    //     }
+    // }
 
-    async function fetchAllMonths() {
-        for (let month = 1; month <= 12; month++) {
-            await fetchMonthlyPrecipitation(month);
-            await delay(1000); // Wait 1 second to avoid hitting rate limits
-        }
+    // async function fetchAllMonths() {
+    //     for (let month = 1; month <= 12; month++) {
+    //         await fetchMonthlyPrecipitation(month);
+    //         await delay(1000); // Wait 1 second to avoid hitting rate limits
+    //     }
 
-        // Log final array after all fetches are complete
-        console.log("Monthly Average Precipitation:", averagePrecipitationData);
-    }
+    //     // Log final array after all fetches are complete
+    //     console.log("Monthly Average Precipitation:", averagePrecipitationData);
+    // }
 
-    fetchAllMonths();
+    // fetchAllMonths();
 </script>
