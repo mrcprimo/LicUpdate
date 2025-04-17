@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             $response = Http::get("http://api.weatherstack.com/current", [
-                'access_key' => 'ZGXCYVYQ44P8YTYQ28V3C56VG',
+                'access_key' => '4fe4d4c552a4b275c730f5247fbc12dd',
                 'query' => 'Licab, Nueva Ecija',
             ]);
 
