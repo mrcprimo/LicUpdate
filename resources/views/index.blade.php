@@ -44,11 +44,11 @@
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        const accessKey = 'b038fa31b4b8ccc60ee64381efb10be2'; // Replace with your actual API key
+        const accessKey = '4fe4d4c552a4b275c730f5247fbc12dd'; // Replace with your actual API key
         const locationPre = 'Licab, Nueva Ecija';
 
         function fetchCurrentPrecipitation() {
-            const url = `http://api.weatherstack.com/current?access_key=${accessKey}&query=${encodeURIComponent(locationPre)}`;
+            const url = `https://api.weatherstack.com/current?access_key=${accessKey}&query=${encodeURIComponent(locationPre)}`;
 
             fetch(url)
                 .then(res => res.json())
