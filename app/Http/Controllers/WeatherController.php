@@ -1,33 +1,32 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Support\Facades\Http;
+use App\Services\FirebaseService;
 
 class WeatherController extends Controller
 {
-    public function getCurrentWeather()
+    protected $firebase;
+
+    public function __construct(FirebaseService $firebase)
     {
-        $accessKey = 'ZGXCYVYQ44P8YTYQ28V3C56VG';
-        $location = 'Licab, Nueva Ecija';
+        $this->firebase = $firebase->getDatabase();
+    }
 
-        $response = Http::get("http://api.weatherstack.com/current", [
-            'access_key' => $accessKey,
-            'query' => $location,
-        ]);
-
-        if ($response->successful()) {
-            $data = $response->json();
-
-            $description = $data['current']['weather_descriptions'][0] ?? '';
-            $precip = $data['current']['precip'] ?? 0;
-
-            return response()->json([
-                'description' => $description,
-                'precip' => $precip,
+    public function store()
+    {
+        $newPost = $this->firebase
+            ->getReference('Weather_history')
+            ->push([
+                'title' => 'Hello Firebase',
+                'body' => 'This is synced from Laravel!',
             ]);
-        } else {
-            return response()->json(['error' => 'API request failed'], 500);
-        }
+
+        return response()->json($newPost->getValue());
+    }
+
+    public function index()
+    {
+        $data = $this->firebase->getReference('Weather_history')->getValue();
+        return response()->json($data);
     }
 }

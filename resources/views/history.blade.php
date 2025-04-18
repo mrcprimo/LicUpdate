@@ -16,30 +16,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>March 15, 2025</td>
-                            <td>64.19 mm/min</td>
-                            <td>
-                                <i class='bx bx-cloud text-success'></i>
-                                Cloudy
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>March 16, 2025</td>
-                            <td>98.01 mm/min</td>
-                            <td>
-                                <i class='bx bx-cloud-rain text-primary'></i>
-                                Rainy
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>March 17, 2025</td>
-                            <td>18.26 mm/min</td>
-                            <td>
-                                <i class='bx bx-sun text-warning'></i>
-                                Sunny
-                            </td>
-                        </tr>
+                        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+                        <script>
+                            $.ajax({
+                                url: `{{ route('weather.history') }}`,
+                                method: 'GET',
+                                success:function(result){
+                                    console.log(result)
+                                },
+                                error:function(error){
+                                    console.log(error)
+                                }
+                            })
+                        </script>
                     </tbody>
                 </table>
             </div>

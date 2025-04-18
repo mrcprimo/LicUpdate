@@ -11,4 +11,4 @@ Route::get('/', function () {
 Route::get('/{page}', [PageController::class, 'show'])
     ->where('page', 'history|precData|about|contact');
 
-Route::get('/weather-update', [WeatherController::class,'getCurrentWeather'])->name('weather.update');
+Route::get('/get-weather', [WeatherController::class, 'index'])->name('weather.history');
