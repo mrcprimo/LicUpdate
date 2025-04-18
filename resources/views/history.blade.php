@@ -22,10 +22,30 @@
                             $.ajax({
                                 url: `{{ route('weather.history') }}`,
                                 method: 'GET',
-                                success:function(result){
-                                    console.log(result)
+                                success: function(result) {
+                                    var body = ''
+                                    result.forEach(item => {
+                                        // Convert string to Date object
+                                        const dateObj = new Date(item.created_at);
+
+                                        // Format the date to "April 17, 2025"
+                                        const options = {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric"
+                                        };
+                                        const formattedDate = dateObj.toLocaleDateString("en-US", options);
+                                        body += `
+                                            <tr>
+                                                <td>${formattedDate}</td>
+                                                <td>${item.precipitation}</td>
+                                                <td>${item.description}</td>
+                                            </tr>
+                                        `
+                                    });
+                                    $('tbody').html(body)
                                 },
-                                error:function(error){
+                                error: function(error) {
                                     console.log(error)
                                 }
                             })

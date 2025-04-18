@@ -12,8 +12,8 @@ class FirebaseService
     public function __construct()
     {
         $factory = (new Factory)
-            ->withServiceAccount(storage_path('app/firebase/cred.json'))
-            ->withDatabaseUri('https://licupdate-6a3fb-default-rtdb.firebaseio.com/');
+            ->withServiceAccount(config_path('firebase_credentials.json'))
+            ->withDatabaseUri('https://licupdate-6a3fb-default-rtdb.asia-southeast1.firebasedatabase.app/');
 
         $this->database = $factory->createDatabase();
     }
