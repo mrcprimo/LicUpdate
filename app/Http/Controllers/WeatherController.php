@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\WarningMail;
 use App\Services\FirebaseService;
+use Illuminate\Support\Facades\Mail;
 
 class WeatherController extends Controller
 {
@@ -22,6 +25,17 @@ class WeatherController extends Controller
             ]);
 
         return response()->json($newPost->getValue());
+    }
+
+    public function latest_threshold()
+    {
+        $latestRecord = $this->firebase
+            ->getReference('Weather_history')
+            ->orderByKey()           // Or orderByChild('timestamp') if you're using timestamps
+            ->limitToLast(1)
+            ->getValue();
+
+        return $latestRecord;
     }
 
     public function index()
