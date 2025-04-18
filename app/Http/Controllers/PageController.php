@@ -19,11 +19,11 @@ class PageController extends Controller
             // ]);
             $precip = 150;
 
-    $threshold = DB::table('weather_history')
-            ->orderBy('created_at', 'desc')
-            ->first();
+    // $threshold = DB::table('weather_history')
+    //         ->orderBy('created_at', 'desc')
+    //         ->first();
 
-            $th = $threshold->precipitation;
+            $th = 158;
             $yellow = (50/100)*$th;
             $orange = (75/100)*$th;
             $red = $th;
