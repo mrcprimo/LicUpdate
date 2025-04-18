@@ -16,7 +16,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        @foreach($history as $weather)
+                            <tr>
+                                <td>{{ \Carbon\Carbon::parse($weather->created_at)->format('F j, Y') }}                                </td>
+                                <td>{{ $weather->precipitation }}mm</td>
+                                <td>
+                                    <!-- Icon -->
+                                     <td>{{ $weather->description }}</td>
+                                </td>
+                            </tr>
+                        @endforeach
+                        <!-- <tr>
                             <td>March 15, 2025</td>
                             <td>64.19 mm/min</td>
                             <td>
@@ -39,7 +49,7 @@
                                 <i class='bx bx-sun text-warning'></i>
                                 Sunny
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

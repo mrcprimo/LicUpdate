@@ -11,4 +11,6 @@ Route::get('/', function () {
 Route::get('/{page}', [PageController::class, 'show'])
     ->where('page', 'history|precData|about|contact');
 
+Route::get('/threshold', [WeatherController::class, 'threshold'])->name('weather.threshold');
+
 Route::get('/weather-update', [WeatherController::class,'getCurrentWeather'])->name('weather.update');
