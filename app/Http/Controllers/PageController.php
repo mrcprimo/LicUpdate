@@ -37,13 +37,13 @@ class PageController extends Controller
             // }
 
             if ($precip >= $yellow && $precip < $orange) {
-                Mail::to('primo.marc@clsu2.edu.ph')->send(new WarningEmail('yellow', $precip));
+                Mail::to('primomarcangelo@gmail.com')->send(new WarningEmail('yellow', $precip));
                 dd('Yellow');
             } elseif ($precip >= $orange && $precip < $red) {
-                Mail::to('primo.marc@clsu2.edu.ph')->send(new WarningEmail('orange', $precip));
+                Mail::to('primomarcangelo@gmail.com')->send(new WarningEmail('orange', $precip));
                 dd('Orange');
             } elseif ($precip >= $red) {
-                Mail::to('primo.marc@clsu2.edu.ph')->send(new WarningEmail('red', $precip));
+                Mail::to('primomarcangelo@gmail.com')->send(new WarningEmail('red', $precip));
                 dd('Red');
             }
         }else{

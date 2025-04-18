@@ -112,7 +112,7 @@ return [
     //     'name' => env('MAIL_FROM_NAME', 'Rain Alert System'),
     // ],
     'from' => [
-        'address' => 'primo.marc@clsu2.edu.ph',
+        'address' => 'primomarcangelo@gmail.com',
         'name' => 'Rain Alert System',
     ],
 
