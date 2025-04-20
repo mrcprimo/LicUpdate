@@ -12,7 +12,7 @@ class FirebaseService
     public function __construct()
     {
         $factory = (new Factory)
-            ->withServiceAccount(base_path('app/private/licupdate-6a3fb-firebase-adminsdk-fbsvc-1ff312c4e0.json'))
+            ->withServiceAccount(base_path('app/private/firebase_credentials.json'))
             ->withDatabaseUri(env('FIREBASE_DB_URL'));
         
         $this->database = $factory->createDatabase();
