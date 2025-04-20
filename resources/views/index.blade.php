@@ -44,7 +44,7 @@
     </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        const accessKey = '4fe4d4c552a4b275c730f5247fbc12dd'; // Replace with your actual API key
+        const accessKey = '5a0736a61e0852b247d9bbc135dfc167'; // Replace with your actual API key
         const locationPre = 'Licab, Nueva Ecija';
 
         function fetchCurrentPrecipitation() {

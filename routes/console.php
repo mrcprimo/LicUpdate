@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Mail;
 
 Schedule::call(function () {
     $response = Http::get("http://api.weatherstack.com/current", [
-        'access_key' => '4fe4d4c552a4b275c730f5247fbc12dd',
+        'access_key' => '5a0736a61e0852b247d9bbc135dfc167',
         'query' => 'Licab, Nueva Ecija',
     ]);
 
