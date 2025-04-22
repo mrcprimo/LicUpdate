@@ -2,45 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\WarningMail;
-use App\Services\FirebaseService;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 
 class WeatherController extends Controller
 {
-    protected $firebase;
+    protected $firebaseUrl = 'https://licupdate-6a3fb-default-rtdb.asia-southeast1.firebasedatabase.app/';
 
-    public function __construct(FirebaseService $firebase)
+    protected function baseUrl()
     {
-        $this->firebase = $firebase->getDatabase();
+        return rtrim($this->firebaseUrl, '/') . '/';
     }
 
     public function store()
     {
-        $newPost = $this->firebase
-            ->getReference('Weather_history')
-            ->push([
-                'title' => 'Hello Firebase',
-                'body' => 'This is synced from Laravel!',
-            ]);
+        $response = Http::post($this->baseUrl() . 'Weather_history.json', [
+            'title' => 'Hello Firebase',
+            'body' => 'This is synced from Laravel!',
+        ]);
 
-        return response()->json($newPost->getValue());
+        return response()->json($response->json());
     }
 
     public function latest_threshold()
     {
-        $latestRecord = $this->firebase
-            ->getReference('Weather_history')
-            ->orderByKey()           // Or orderByChild('timestamp') if you're using timestamps
-            ->limitToLast(1)
-            ->getValue();
+        // Firebase REST API doesn't support complex queries easily,
+        // but we can fetch all and get the last one manually.
+        $response = Http::get($this->baseUrl() . 'Weather_history.json');
 
-        return $latestRecord;
+        $data = $response->json();
+
+        if (!$data) return response()->json(null);
+
+        // Get the latest item by key (assuming they're time-ordered)
+        $latest = end($data);
+
+        return response()->json($latest);
     }
 
     public function index()
     {
-        $data = $this->firebase->getReference('Weather_history')->getValue();
-        return response()->json($data);
+        $response = Http::get($this->baseUrl() . 'Weather_history.json');
+
+        return response()->json($response->json());
     }
 }
