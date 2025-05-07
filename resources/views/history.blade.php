@@ -12,7 +12,7 @@
                             <th scope="col" class="text-primary">Date</th>
                             <th scope="col" class="text-primary">Precipitation</th>
                             <th scope="col" class="text-primary">Weather History</th>
-                            <th scope="col" class="text-primary"></th>
+                            <th scope="col" class="text-primary">Warning</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,11 +35,48 @@
                                             day: "numeric"
                                         };
                                         const formattedDate = dateObj.toLocaleDateString("en-US", options);
+
+                                        /*
+
+                                        List of weather description
+                                        
+                                        1. Sunny, Clear, 
+                                        2. Partly Cloudy
+                                        3. Fog, Mist, Cloudy, Overcast
+                                        4. Light Rain, Heavy Rain
+                                        5. Thunderstorms
+                                        
+                                        */
+                                        
+                                        // Convert the input to lowercase to make the comparison case-insensitive
+                                        var original = item.description.toLowerCase();
+                                        var icon = '';
+                                        // List of weather description categories
+                                        if (original.includes("sunny") || original.includes("clear")) {
+                                            // description 1
+                                            icon = `<i class='bx bx-sun text-primary'></i>`
+                                        } else if (original.includes("partly cloudy")) {
+                                            // description 2
+                                            icon = `<i class='bx bx-cloud text-primary'></i>`
+                                        } else if (original.includes("fog") || original.includes("mist") || original.includes("cloudy") || original.includes("overcast")) {
+                                            // description 3
+                                            icon = `<i class='bx bxs-cloud text-primary'></i>`
+                                        } else if (original.includes("light rain") || original.includes("heavy rain")) {
+                                            // description 4
+                                            icon = `<i class='bx bx-cloud-rain text-primary'></i>`
+                                        } else if (original.includes("thunderstorms")) {
+                                            // description 5
+                                            icon = `<i class='bx bx-cloud-lightning text-primary'></i>`
+                                        } else {
+                                            console.log("Weather description not recognized.");
+                                        }
+
                                         body += `
                                             <tr>
                                                 <td>${formattedDate}</td>
-                                                <td>${item.precipitation}</td>
-                                                <td>${item.description}</td>
+                                                <td>${item.precipitation} mm</td>
+                                                <td>${icon}  ${item.description}</td>
+                                                <td style='color: ${item.warning};'><b>${item.warning}</b></td>
                                             </tr>
                                         `
                                     });

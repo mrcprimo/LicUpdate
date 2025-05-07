@@ -14,3 +14,4 @@ Route::get('/{page}', [PageController::class, 'show'])
 
 Route::get('/get-weather', [WeatherController::class, 'index'])->name('weather.history');
 Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+Route::get('/user-contact', [WeatherController::class, 'storeUserContact'])->name('user.store');

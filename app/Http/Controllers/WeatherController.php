@@ -13,20 +13,34 @@ class WeatherController extends Controller
         return rtrim($this->firebaseUrl, '/') . '/';
     }
 
-    public function store()
+    public function storeWeatherHistory($desc, $precip, $warning, $date)
     {
         $response = Http::post($this->baseUrl() . 'Weather_history.json', [
-            'title' => 'Hello Firebase',
-            'body' => 'This is synced from Laravel!',
+            'description' => $desc,
+            'precipitation' => $precip,
+            'warning'=> $warning,
+            'created_at'=> $date
         ]);
 
-        return response()->json($response->json());
+        if($response){
+            return true;
+        }
+    }
+
+    public function storeUserContact()
+    {
+        $response = Http::post($this->baseUrl() . 'Users.json', [
+            'email' => request()->get('emailuser'),
+        ]);
+
+        if($response){
+            return true;
+        }
     }
 
     public function latest_threshold()
     {
-        // Firebase REST API doesn't support complex queries easily,
-        // but we can fetch all and get the last one manually.
+
         $response = Http::get($this->baseUrl() . 'Weather_history.json');
 
         $data = $response->json();
