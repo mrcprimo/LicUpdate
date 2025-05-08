@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class WeatherController extends Controller
 {
@@ -34,6 +36,9 @@ class WeatherController extends Controller
         ]);
 
         if($response){
+
+            Mail::to(request()->get('emailuser'))->send(new WelcomeMail());
+
             return true;
         }
     }
