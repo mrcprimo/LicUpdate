@@ -25,7 +25,7 @@
         <p>Our mission is simple: <strong>to keep you informed, safe, and prepared</strong>. Whether you’re a homeowner, business owner, or community member, our system is designed with your safety in mind.</p>
 
         <p style="margin-top: 25px;">
-            <a href="{{ url('/') }}" style="background: #0066cc; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px;">Visit LicUpdate</a>
+            <a href="https://licupdate-backend-m69nvq.laravel.cloud/" style="background: #0066cc; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px;">Visit LicUpdate</a>
         </p>
 
         <p style="margin-top: 30px; font-size: 0.9em; color: #666;">
