@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Mail;
 Schedule::call(function () {
 
     $response = Http::get("http://api.weatherstack.com/current", [
-        'access_key' => '4fe4d4c552a4b275c730f5247fbc12dd',
+        'access_key' => '25006c1341ed3223974ad45330323626',
         'query' => 'Licab, Nueva Ecija',
     ]);
 
@@ -27,8 +27,8 @@ Schedule::call(function () {
         // ✅ Call the latest_threshold function
         $controller = app(WeatherController::class);
         $latest = $controller->latest_threshold();
-        
-        $precipitation = $latest[0]['precipitation'];
+        $data = $latest->getData(true); // true = return associative array
+        $precipitation = $data['precipitation']; // now safe to access
 
         $red = $precipitation; // threshold
         $orange = ($precipitation * 75)/100; // 75% of threshold

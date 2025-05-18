@@ -99,7 +99,7 @@
             }
         }
 
-        const accessKey = '4fe4d4c552a4b275c730f5247fbc12dd'; // Replace with your actual API key
+        const accessKey = '25006c1341ed3223974ad45330323626'; // Replace with your actual API key
         const locationPre = 'Licab, Nueva Ecija';
 
         function fetchCurrentPrecipitation() {
